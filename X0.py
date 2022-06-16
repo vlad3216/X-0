@@ -10,7 +10,7 @@ def display_instruct():
     print(
 """
 Добро пожаловать в игру Крестики-нолики!
-С Вами  будет сражаться компьютер.
+С Вами  буду сражаться я (компьютер).
 Что бы сделать свой ход , введите от 0 до 8.
 Числа соответсвуют полям доски:
 0 | 1 | 2
@@ -34,7 +34,7 @@ def pieces():
     players = [human, computer]
     player1 = random.choice(players)
     if player1 == human:
-            print("\n Ну что ж ,даю тебе фору играй крестиками")
+            print("\n Ну что ж ,даю тебе фору")
             human = X
             computer = O
     elif player1 == computer:
@@ -117,7 +117,7 @@ def congrat_winner(the_winner, computer, human):
         else:
             print("Ничья!\n")
         if the_winner == computer:
-            print("Победил кмопьютер!")
+            print("Победил компьютер!")
         elif the_winner == human:
             print("Поздравляю,Вы победили компьютер!")
         elif the_winner == TIE:
