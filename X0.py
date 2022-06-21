@@ -1,14 +1,14 @@
 import random
 
-X="X"
-O="O"
-EMPTY=' '
-TIE="Ничья"
-NUM_SQUARES=9
+X = "X"
+O = "O"
+EMPTY = ' '
+TIE = "Ничья"
+NUM_SQUARES = 9
+
 
 def display_instruct():
-    print(
-"""
+    print("""
 Добро пожаловать в игру Крестики-нолики!
 С Вами  буду сражаться я (компьютер).
 Что бы сделать свой ход , введите от 0 до 8.
@@ -19,14 +19,15 @@ def display_instruct():
 ---------
 6 | 7 | 8
 Приготовься к игре противник! сейчас начнется решающее сражение!\n
-"""
-        )
+""")
+
 
 def ask_number(question, low, high):
         response = None
         while response not in range(low, high):
             response = int(input(question))
         return response
+
 
 def pieces():
     human = X
@@ -43,11 +44,13 @@ def pieces():
         human = O
     return computer, human
 
+
 def new_board():
         board = []
         for square in range(NUM_SQUARES):
             board.append(EMPTY)
         return board
+
 
 def display_board(board):
         print("\n\t", board[0], "|", board[1], "|", board[2])
@@ -56,12 +59,14 @@ def display_board(board):
         print("\t", "---------")
         print("\n\t", board[6], "|", board[7], "|", board[8], "\n")
 
+
 def legal_moves(board):
         moves = []
         for square in range(NUM_SQUARES):
             if board[square] == EMPTY:
                 moves.append(square)
         return moves
+
 
 def winner(board):
         WAYS_TO_WIN = ((0, 1, 2),
@@ -80,15 +85,18 @@ def winner(board):
                 return TIE
         return None
 
+
 def human_move(board, human):
         legal = legal_moves(board)
         move = None
         while move not in legal:
-            move = ask_number("Твой ход. Выбери одно из полей (0-8):", 0, NUM_SQUARES)
-            if move not in legal:
-                print("\nСмешной человек! Это поле уже занято. Выбери другое.\n")
+            move = ask_number(
+                "Твой ход. Выбери одно из полей (0-8):", 0, NUM_SQUARES)
+        if move not in legal:
+            print("\nСмешной человек! Это поле уже занято. Выбери другое.\n")
         print("Хорошо.....")
         return move
+
 
 def computer_move(board, computer, human):
         board = board[:]
@@ -105,11 +113,13 @@ def computer_move(board, computer, human):
                 print(move)
                 return move
 
+
 def next_turn(turn):
         if turn == X:
             return O
         else:
             return X
+
 
 def congrat_winner(the_winner, computer, human):
         if the_winner != TIE:
@@ -122,6 +132,7 @@ def congrat_winner(the_winner, computer, human):
             print("Поздравляю,Вы победили компьютер!")
         elif the_winner == TIE:
             print("Ничья!")
+
 
 def main():
         display_instruct()
@@ -140,8 +151,5 @@ def main():
             turn = next_turn(turn)
         the_winner = winner(board)
         congrat_winner(the_winner, computer, human)
-
-
-
 main()
 input("\n\nНажмите Enter, чтобы выйти.")
